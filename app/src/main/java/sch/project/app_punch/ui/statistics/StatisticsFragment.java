@@ -6,6 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,20 +22,40 @@ import sch.project.app_punch.R;
 
 public class StatisticsFragment extends Fragment {
 
-    private StatisticsViewModel statisticsViewModel;
-
+    MaterialCalendarView calendarView;
+    StatisticsBean statisticsBean;
+    List<StatisticsBean.VoBean> voBeanList;
+    View view;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        statisticsViewModel =
-                ViewModelProviders.of(this).get(StatisticsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_statistics, container, false);
-        final TextView textView = root.findViewById(R.id.text_statistics);
-        statisticsViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+        view = inflater.inflate(R.layout.fragment_statistics, container, false);
+        initData();
+        initView();
+        return view;
+    }
+
+    private void initView() {
+        calendarView = view.findViewById(R.id.calendarView);
+        calendarView.setWeekDayLabels(new String[]{"日", "一", "二", "三", "四", "五", "六"});
+        try{
+            for(int i=0;i<voBeanList.size();i++){
+                calendarView.setSelectedDate(CalendarDay.from(voBeanList.get(i).getYear(), voBeanList.get(i).getMonth(), voBeanList.get(i).getDay()));
             }
-        });
-        return root;
+        }catch (Exception e){
+
+        }
+
+
+    }
+    private void initData(){
+        StatisticsModel statisticsModel = new StatisticsModel();
+        try {
+            statisticsBean = statisticsModel.getInfo();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        voBeanList = statisticsBean.getVo();
     }
 }

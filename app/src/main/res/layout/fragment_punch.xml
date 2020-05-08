@@ -1,159 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="32dp">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints">
-
-        <LinearLayout
+        android:layout_height="70dp"
+        android:background="#ffffff"
+        android:id="@+id/rl_pubch_title">
+        <TextView
+            android:text="签到"
+            android:textSize="21sp"
+            android:textColor="#ff333333"
+            android:gravity="center"
+            android:singleLine="true"
+            android:ellipsize="marquee"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:background="@drawable/punch_index_border"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="16计算机科学与技术专业"
-                    android:textColor="#000000"
-                    android:textSize="22sp"></TextView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="武汉工商学院（考研）"
-                    android:textSize="21sp"></TextView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="15dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="2019.07.01 ~ 2020.05.10"
-                    android:textSize="21sp"></TextView>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:orientation="vertical"
-            android:layout_marginTop="15dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:text="2020.05.01 星期五"
-                        android:textColor="#000000"
-                        android:gravity="center_vertical"
-                        android:textSize="22sp">
-                    </TextView>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:text="签到范围：武汉工商学院"
-                        android:gravity="center_vertical"
-                        android:textSize="21sp">
-                    </TextView>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="2dp"
-                    android:background="#000000"/>
-                <TextView
-                    android:layout_width="300dp"
-                    android:layout_height="match_parent"
-                    android:textSize="20sp"
-                    android:text="福建省厦门市湖里区软件原气问去恶趣味给的撒的撒的啊"/>
-                <Button
-                    android:layout_width="80dp"
-                    android:layout_height="40dp"
-                    android:text="获取定位"/>
-            </LinearLayout>
-        </LinearLayout>
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll_punch_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_pubch_title"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_punch_school"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="#ff333333"
+            android:text="16计算机科学与技术"/>
+        <TextView
+            android:id="@+id/tv_punch_classes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="@color/color_default_shadow"
+            android:layout_marginTop="5dp"
+            android:text="武汉工商学院(考研)"/>
+        <TextView
+            android:id="@+id/tv_punch_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="@color/color_default_shadow"
+            android:layout_marginTop="5dp"
+            android:text="2019.07.01-2020.05.10"/>
     </LinearLayout>
 
-    <top.androidman.SuperButton
-        android:id="@+id/punch_btn"
-        android:layout_width="195dp"
-        android:layout_height="80dp"
-        android:layout_margin="20dp"
-        app:color_normal="#00BFFF"
-        app:corner="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.703"
-        app:text="@string/title_punch"
-        app:textColor="#FFFFFF"
-        app:textSize="24sp"
-        tools:ignore="MissingConstraints">
+    <LinearLayout
+        android:id="@+id/ll_punch_now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_punch_school"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_punch_now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="#ff333333"
+            android:text="2020.05.01 星期五"/>
+        <TextView
+            android:id="@+id/tv_punch_round"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="@color/color_default_shadow"
+            android:layout_marginTop="5dp"
+            android:text="签到范围: 武汉工商学院"/>
+    </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/ll_punch_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_punch_now"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/iv_punch_location"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_location"/>
+        <TextView
+            android:id="@+id/tv_punch_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_punch_location"
+            android:textSize="17sp"
+            android:textColor="#ff333333"
+            android:gravity="center_vertical"
+            android:text="湖北省武汉市硚口区长顺路104号靠近华生-汉口城市广场"/>
+        <ImageView
+            android:id="@+id/iv_punch_reload"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_reload"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_punch_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
+        android:layout_below="@id/ll_punch_address"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
         <cn.iwgang.countdownview.CountdownView
-            android:id="@+id/cv_countdownView"
-            android:layout_width="120dp"
-            android:layout_height="26dp"
+            android:id="@+id/cv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             app:isHideTimeBackground="true"
+            app:isShowDay="true"
             app:isShowHour="true"
-            app:isShowMillisecond="false"
             app:isShowMinute="true"
             app:isShowSecond="true"
+            app:isShowMillisecond="true"
+            app:timeTextColor="#000000"
+            app:timeTextSize="22sp"
             app:isTimeTextBold="true"
             app:suffixGravity="bottom"
-            app:suffixTextColor="#FF7F50"
+            app:suffixTextColor="#000000"
             app:suffixTextSize="12sp"
-            app:timeTextColor="#FFFFFF"
-            app:timeTextSize="22sp"
-            tools:ignore="MissingConstraints" />
-    </top.androidman.SuperButton>
+            app:suffixHour="时"
+            app:suffixMinute="分"
+            app:suffixSecond="秒"
+            app:suffixMillisecond="毫秒" />
+        <TextView
+            android:id="@+id/sb_punch_submit"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="@color/white"
+            android:layout_gravity="center_vertical"
+            android:textSize="25sp"
+            android:background="@color/color_ffB419"
+            android:text="签到" >
+        </TextView>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/text_punch_tips"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="436dp"
-        android:text="当前不在签到范围内"
-        android:textAlignment="center"
-        android:textColor="#778899"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
