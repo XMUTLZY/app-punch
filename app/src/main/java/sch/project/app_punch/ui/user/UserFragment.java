@@ -1,5 +1,6 @@
 package sch.project.app_punch.ui.user;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,6 +24,11 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     TextView school;
     TextView classes;
     TextView tuichu;
+    Activity main ;
+
+    public UserFragment(Activity main) {
+        this.main = main;
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,8 +43,8 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         mail = view.findViewById(R.id.tv_user_mail);
         school = view.findViewById(R.id.tv_user_school);
         classes = view.findViewById(R.id.tv_user_class);
-//        tuichu = view.findViewById(R.id.tv_tuichu);
-//        tuichu.setOnClickListener(this);
+        tuichu = view.findViewById(R.id.tv_tuichu);
+        tuichu.setOnClickListener(this);
     }
     void initData(){
         SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("user", Context.MODE_PRIVATE);
@@ -50,9 +56,20 @@ public class UserFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-//        if (v.getId()==R.id.tv_tuichu){
-//            OkHttpRequest.JSESSIONID="0";
-//
-//        }
+        if (v.getId()==R.id.tv_tuichu){
+            OkHttpRequest.JSESSIONID="0";
+            clear();
+            tuichu();
+        }
+    }
+
+    public void clear() {
+        SharedPreferences preferences = view.getContext().getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.commit();
+    }
+    void tuichu(){
+        main.finish();
     }
 }
