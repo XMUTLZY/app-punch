@@ -1,5 +1,6 @@
 package sch.project.app_punch;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import sch.project.app_punch.login.LoginActivity;
 import sch.project.app_punch.ui.punch.PunchFragment;
 import sch.project.app_punch.ui.statistics.StatisticsFragment;
 import sch.project.app_punch.ui.user.UserFragment;
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         View view = LayoutInflater.from(this).inflate(R.layout.custom_add_view, null);
         fragments.add(new PunchFragment());
         fragments.add(new StatisticsFragment());
-        fragments.add(new UserFragment());
+        fragments.add(new UserFragment(this));
         navigationBar.titleItems(tabText)
                 .normalIconItems(normalIcon)
                 .selectIconItems(selectIcon)
@@ -58,5 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 .canScroll(true)
                 .build();
     }
+
 
 }
