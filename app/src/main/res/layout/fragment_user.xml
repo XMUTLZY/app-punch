@@ -120,6 +120,21 @@
         </RelativeLayout>
 
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp">
+
+            <TextView
+                android:id="@+id/tv_tuichu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@color/color_14c7de"
+                android:text="退出系统"
+                android:textColor="#ff333333"
+                android:textSize="24sp" />
+        </RelativeLayout>
     </LinearLayout>
 
 
