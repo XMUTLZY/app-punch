@@ -2,6 +2,7 @@ package sch.project.app_punch.ui.user;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import sch.project.app_punch.MainActivity;
 import sch.project.app_punch.R;
+import sch.project.app_punch.login.LoginActivity;
 import sch.project.app_punch.util.OkHttpRequest;
 
 public class UserFragment extends Fragment implements View.OnClickListener {
@@ -70,6 +72,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         editor.commit();
     }
     void tuichu(){
+        startActivity(new Intent(main,LoginActivity.class));
         main.finish();
     }
 }

@@ -93,6 +93,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editor.putString("classes",loginBean.getVo().getClasses());
         editor.putString("mail",loginBean.getVo().getEmail());
         editor.putString("userName",loginBean.getVo().getUserName());
+        editor.putString("password",password);
         editor.putString("islogin","true");
         editor.apply();
     }

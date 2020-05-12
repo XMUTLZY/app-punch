@@ -25,14 +25,28 @@ public class StatisticsFragment extends Fragment {
     MaterialCalendarView calendarView;
     StatisticsBean statisticsBean;
     List<StatisticsBean.VoBean> voBeanList;
+    boolean isLoad = false;
     View view;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_statistics, container, false);
+        isLoad = true;
         initData();
         initView();
         return view;
     }
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isLoad){
+            initData();
+            initView();
+        }
+
+    }
+
 
     private void initView() {
         calendarView = view.findViewById(R.id.calendarView);

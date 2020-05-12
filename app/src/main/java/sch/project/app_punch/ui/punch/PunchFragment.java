@@ -128,13 +128,19 @@ public class PunchFragment extends Fragment implements View.OnClickListener, AMa
         }
 
     }
+
+    // 设置倒计时
     void setClock(){
         long endtime = punchBean.getClock()*60000;
         long starttime = 24*60*60000 - getSeconds();
         mCvCountdownView = (CountdownView)view.findViewById(R.id.cv_count);
         mCvCountdownView.start(endtime-starttime); // Millisecond
     }
-
+    // 签到成功关闭倒计时
+    void closeClock(){
+        mCvCountdownView.stop();
+        mCvCountdownView.start(0);
+    }
     /**
      * 签到时判断是否超时
      * @return
@@ -180,22 +186,32 @@ public class PunchFragment extends Fragment implements View.OnClickListener, AMa
     }
 
     void checkDistence(){
+        // 检查是否超时
         if (checkClock()){
             Toast.makeText(this.getContext(), "签到超时", Toast.LENGTH_SHORT).show();
             return;
         }
+        // 检查是否定位
         if (weidu!=0&&jingdu!=0){
+            // 目标定位
             LatLng mubiao = new LatLng(punchBean.getPoint_y(),punchBean.getPoint_x());
+            // 用户定位
             LatLng yonghu = new LatLng(weidu,jingdu);
+            // 计算距离
             float distance = AMapUtils.calculateLineDistance(mubiao,yonghu);
+            // 距离小于1000 显示m
             if ((int)distance<1000)
                 Toast.makeText(this.getContext(), "距离"+(int)distance+"m", Toast.LENGTH_SHORT).show();
+            // 距离大于1000 显示km
             else
                 Toast.makeText(this.getContext(), "距离"+(int)distance/1000+"km", Toast.LENGTH_SHORT).show();
+            // 签到范围小于10000 可以签到
             if ((int)distance<10000){
                 Toast.makeText(this.getContext(),"签到成功",Toast.LENGTH_LONG).show();
+
                 QiandaoModel qiandaoModel = new QiandaoModel();
                 boolean isSuccess = false;
+                // 向后端传输签到信息
                 try {
                    isSuccess =  qiandaoModel.getInfo();
                 } catch (ExecutionException e) {
@@ -203,10 +219,15 @@ public class PunchFragment extends Fragment implements View.OnClickListener, AMa
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                // 后端存储签到信息后 设置界面
                 if (isSuccess){
                     submitButton.setClickable(false);
                     submitButton.setText("已签到");
+                    submitButton.setBackgroundColor(Color.parseColor("#3E3B3B"));
+                    // 关闭Clock
+                    closeClock();
                 }
+                // 后端没获取到信息，界面不更改，可重新登录
                 else {
                     Toast.makeText(this.getContext(),"签到失败请重新签到",Toast.LENGTH_LONG).show();
                 }
