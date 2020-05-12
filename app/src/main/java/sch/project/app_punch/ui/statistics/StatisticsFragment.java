@@ -42,8 +42,10 @@ public class StatisticsFragment extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
         if (isLoad){
             initData();
+            calendarView.clearSelection();
             initView();
         }
+        isLoad = false;
 
     }
 
@@ -53,7 +55,7 @@ public class StatisticsFragment extends Fragment {
         calendarView.setWeekDayLabels(new String[]{"日", "一", "二", "三", "四", "五", "六"});
         try{
             for(int i=0;i<voBeanList.size();i++){
-                calendarView.setSelectedDate(CalendarDay.from(voBeanList.get(i).getYear(), voBeanList.get(i).getMonth(), voBeanList.get(i).getDay()));
+                calendarView.setDateSelected(CalendarDay.from(voBeanList.get(i).getYear(), voBeanList.get(i).getMonth(), voBeanList.get(i).getDay()),true);
             }
         }catch (Exception e){
 
